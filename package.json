@@ -13,5 +13,9 @@
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "mongoose": "^5.7.4"
+  },
+  "devDependencies": {
+    "husky": "^3.0.9",
+    "pretty-quick": "^2.0.0"
   }
 }
