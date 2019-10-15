@@ -4,13 +4,14 @@
 
         <div class="ui top attached">
             <div class="item">
-                    <img class="ui centered rounded image" src="<%= blog.image %>">
+                <img class="ui centered rounded image" src="<%= blog.image %>">
+               
                 <div class="content">
-                        <span><%= blog.created.toDateString() %></span>
+                    <span><%= blog.created.toDateString() %></span>
                 </div>
 
                 <div class="description">
-        <p><%- blog.body %></p>
+                    <p><%- blog.body %></p>
                 </div>
             </div>
         </div>
