@@ -64,6 +64,13 @@ app.put("/blogs/:id", function(req, res) {
   });
 });
 
+app.delete("/blogs/:id", function(req, res) {
+  Blog.findByIdAndRemove(req.params.id, function(err, data) {
+    if (err) res.redirect("/blogs/" + req.params.id);
+    else res.redirect("/blogs");
+  });
+});
+
 app.listen(3000, function(error) {
   if (error) throw error;
   console.log("Server is running on port 3000");
