@@ -1,13 +1,15 @@
 var express = require("express");
+var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
-var mongoose = require("mongoose");
+var expressSanitizer = require("express-sanitizer");
 
 var app = express();
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(expressSanitizer());
 
 mongoose.connect("mongodb://localhost:27017/blog", {
   useNewUrlParser: true,
@@ -37,6 +39,7 @@ app.get("/blogs/form", function(req, res) {
 });
 
 app.post("/blogs", function(req, res) {
+  req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.create(req.body.blog, function(err, data) {
     if (err) res.render("form");
     else res.redirect("/blogs");
@@ -51,6 +54,7 @@ app.get("/blogs/:id", function(req, res) {
 });
 
 app.get("/blogs/:id/edit", function(req, res) {
+  req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.findById(req.params.id, function(err, data) {
     if (err) console.log(err);
     else res.render("update", { blog: data });
