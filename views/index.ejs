@@ -1,10 +1,12 @@
-<h1>Blogs index page</h1>
+<% include partials/header %>
+    <h1>Blogs index page</h1>
 
-<% blogs.forEach(blog => { %>
-    <div>
-        <h2><%= blog.title %></h2>
-        <img src="<%= blog.image %>">
-        <span><%= blog.created %></span>
-        <p><%= blog.body %></p>
-    </div>
+    <% blogs.forEach(blog => { %>
+        <div>
+            <h2><%= blog.title %></h2>
+            <img src="<%= blog.image %>">
+            <span><%= blog.created %></span>
+            <p><%= blog.body %></p>
+        </div>
     <% }) %>
+<% include partials/header %>

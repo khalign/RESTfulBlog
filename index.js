@@ -22,6 +22,17 @@ app.get('/blogs', function(req, res) {
     })
 })
 
+app.get('/blogs/form', function(req, res) {
+    res.render('form')
+})
+
+app.post('/blogs', function(req, res) {
+    Blog.create(req.body.blog, function(err, data) {
+        if (err) res.render('form')
+        else res.redirect('/blogs')
+    })
+})
+
 app.listen(3000, function(error) {
     if (error) throw error;
     console.log("Server is running on port 3000");
